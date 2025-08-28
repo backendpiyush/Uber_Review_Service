@@ -1,29 +1,38 @@
 package com.example.UberReviewService.model;
 
-
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
-@Entity
+import java.util.Date;
+
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "bookingreview")
 public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    Integer id;
+    private Integer id;
 
-    @Column
-    String title;
+    private String content;
 
-    @Column
-    Boolean completed;
+    private Double rating;
 
+    @Column(nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreatedDate
+    private Date createdAt;
 
-
-
-
+    @Column(nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    @LastModifiedDate
+    private Date updatedAt;
 
 }
