@@ -14,25 +14,17 @@ import java.util.Date;
 @AllArgsConstructor
 @Entity
 @Table(name = "bookingreview")
-public class Review {
+@Inheritance(strategy = InheritanceType.JOINED)
+public class Review extends BaseModel {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
-    private Integer id;
 
     private String content;
 
-    private Double rating;
+        private Double rating;
 
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    @CreatedDate
-    private Date createdAt;
-
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    @LastModifiedDate
-    private Date updatedAt;
+    @Override
+    public String toString() {
+        return this.id + " " + this.content + " " + this.rating + " " + this.createdAt + " " + this.updatedAt;
+    }
 
 }
